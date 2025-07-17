@@ -44,4 +44,19 @@ router.post('/deposit/:id', async (req,res)=>{
 
 })
 
+router.post('/withdraw/:id'), async(req,res)=>{
+    const total = req.body
+    const user  = await User.find(req.params.id)
+    if(!customer) {
+        return res.status(404).send("User does not exist")}
+
+    if(customer.balance < total){
+        return res.send("Insufficent funds")
+    }
+
+    user.balance -= total
+    await user.save()
+
+}
+
 export default router
