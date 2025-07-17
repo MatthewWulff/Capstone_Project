@@ -1,13 +1,13 @@
 import express from "express"
-import User from "../models/User"
-import Transaction from "../models/Transaction"
+import User from "../models/User.js"
+import Transaction from "../models/Transaction.js"
 
 const router =express.Router()
 
 router.post('/create' ,async(req, res)=>{
-    const{firstName, lastName, pin} = req.body
+    const{firstName, lastName, pin, phone} = req.body
 
-    const newUser = new User({firstName, lastName , pin})
+    const newUser = new User({firstName, lastName , pin, phone})
     await newUser.save()
 
     res.json("User Created")
@@ -36,3 +36,5 @@ router.post('/deposit/:id', async (req,res)=>{
 
 
 })
+
+export default router
