@@ -23,3 +23,16 @@ router.get('balance/:id' , async (req,res)=> {
         res.json({balance: user.balance})
     }
 })
+router.post('/deposit/:id', async (req,res)=>{
+    const {total} = req.body
+    const user = await User.findById(req.params.id)
+    if(!customer) {
+        return res.status(404).send("User does not exist")}
+
+    user.balance += total
+
+    await user.save()
+
+
+
+})
