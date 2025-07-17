@@ -33,6 +33,13 @@ router.post('/deposit/:id', async (req,res)=>{
 
     await user.save()
 
+    await Transaction.create({
+        type: 'deposit',
+        amount: total,
+        balance : user.balance
+    })
+    res.send("Deposit accepted")
+
 
 
 })
