@@ -10,5 +10,16 @@ router.post('/create' ,async(req, res)=>{
     const newUser = new User({firstName, lastName , pin})
     await newUser.save()
 
+    res.json("User Created")
+
     
+})
+router.get('balance/:id' , async (req,res)=> {
+    const user = await User.findById(req.params.id)
+
+    if(!customer) {
+        return res.status(404).send("User does not exist")
+    }else{
+        res.json({balance: user.balance})
+    }
 })
