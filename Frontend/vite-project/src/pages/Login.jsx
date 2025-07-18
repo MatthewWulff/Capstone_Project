@@ -23,7 +23,16 @@ const userSubmit = async (e) => {
 }
 
 return(
-    
+    <>
+       <h2>{isUser ? 'Create Account' : "Login" }</h2>
+       <form onSubmit= {userSubmit}>
+        <input name = "firstName"
+        placeholoder = "First Name"
+        value={form.firstName}
+        onChange={formChange}/>
+       </form>
+    </>
+
 )
 
 }
