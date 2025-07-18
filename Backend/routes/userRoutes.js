@@ -63,7 +63,14 @@ router.post("/withdraw/:id",
 
     user.balance -= amount;
     await user.save();
-    res.send("Withdrawal successful!")
+    
+
+  await Transaction.create({
+    type: "withdraw",
+    amount,
+    balance: user.balance,
+  });
+  res.send("Withdrawal accepted!");
 });
 
 export default router;
