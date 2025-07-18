@@ -12,6 +12,9 @@ router.post("/create", async (req, res) => {
 
   res.json("User Created");
 });
+
+
+
 router.get("balance/:id", async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -21,6 +24,10 @@ router.get("balance/:id", async (req, res) => {
     res.json({ balance: user.balance });
   }
 });
+
+
+
+
 router.post("/deposit/:id", async (req, res) => {
   const amount = Number(req.body.amount);
   const user = await User.findById(req.params.id);
@@ -40,20 +47,23 @@ router.post("/deposit/:id", async (req, res) => {
   res.send("Deposit accepted");
 });
 
+
+
 router.post("/withdraw/:id",
   async (req, res) => {
-    const total = req.body;
+    const amount = Number(req.body.amount);
     const user = await User.findById(req.params.id);
     if (!user) {
       return res.status(404).send("User does not exist");
     }
 
-    if (user.balance < total) {
+    if (user.balance < amount) {
       return res.send("Insufficent funds");
     }
 
-    user.balance -= total;
+    user.balance -= amount;
     await user.save();
+    res.send("Withdrawal successful!")
 });
 
 export default router;
