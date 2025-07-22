@@ -10,8 +10,8 @@ export default function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element= {<Login/>}/>
-      <Route path='/dashboard/:id' element={<Dashboard/>}/>
+      <Route path='/' element= {<Login />}/>
+      <Route path='/dashboard/:id' element={<Dashboard />}/>
 
     </Routes>
     </BrowserRouter>

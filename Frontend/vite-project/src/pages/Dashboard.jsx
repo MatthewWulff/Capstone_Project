@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import {useParams, useNavigate} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom";
 import api from "../api";
 
-export default Dashboard(){
+export default function Dashboard(){
     const {id} = useParams()
     const navigate = useNavigate()
     const [balance, setBalance] = useState(0)
@@ -21,16 +21,16 @@ export default Dashboard(){
         if(!amount){
             return
         }
-        const res = await api.post(`/users/${id}/deposit`, {amount: Number(amount)})
+        const res = await api.post(`/deposit/${id}`, {amount: Number(amount)})
         setBalance(res.data.balance)
         setAmount('')
     }
-}
+
     const withdraw = async()=>{
         if(!amount){
             return
         }
-        const res = await api.post(`/users/${id}/withdraw`, {amount: Number(amount)})
+        const res = await api.post(`/withdraw/${id}`, {amount: Number(amount)})
         setBalance(res.data.balance)
         setAmount('')
     }
@@ -53,3 +53,4 @@ export default Dashboard(){
 
         </>
     )
+}

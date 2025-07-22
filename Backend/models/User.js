@@ -15,11 +15,7 @@ const userSchema = new mongoose.Schema({
     default: 0,
   },
   dateJoined: { type: Date, default: Date.now },
-  phone: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
+
 });
 
 export default mongoose.model("User", userSchema);
