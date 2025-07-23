@@ -38,6 +38,12 @@ export default function Dashboard() {
       setMessage(err.response?.data?.message || "Withdrawal failed");
     }
   };
+  const deleteAccount = async ()=>{
+    const res = await api.delete(`/delete/${id}`)
+    setMessage(res.data.message)
+    navigate("/")
+  }
+
 
   return (
     <>
@@ -59,6 +65,8 @@ export default function Dashboard() {
       <button onClick={() => navigate(`/transactions/${id}`)}>
         View transactions
       </button>
+      <div></div>
+      <button onClick={deleteAccount }>Delete Account</button>
     </>
   );
 }

@@ -4,6 +4,16 @@ import Transaction from "../models/Transaction.js";
 
 const router = express.Router();
 
+
+router.delete("/delete/:id" , async (req,res)=> {
+    const user = await User.findByIdAndDelete(req.params.id)
+    if(!user){
+        return res.status(404).json({message: "User not found"})
+    }
+    await Transaction.deleteMany({userId:req.params.id})
+    res.json({message: "User deleted"})
+})
+
 router.get("/transactions/:id", async(req,res)=>{
     const transactions = await Transaction.find({userId:req.params.id})
     res.json(transactions)
