@@ -3,8 +3,9 @@ import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
+import "./styles.css"
 
-import './App.css'
+
 
 
 export default function App() {
