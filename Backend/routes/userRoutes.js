@@ -4,6 +4,11 @@ import Transaction from "../models/Transaction.js";
 
 const router = express.Router();
 
+router.get("/transactions/:id", async(req,res)=>{
+    const transactions = await Transaction.find({userId:req.params.id})
+    res.json(transactions)
+})
+
 router.post('/login',async (req,res)=>{
     const {firstName,lastName,pin}= req.body
     const user = await User.findOne({firstName, lastName,pin})
@@ -46,11 +51,12 @@ router.post("/deposit/:id", async (req, res) => {
   await user.save();
 
   await Transaction.create({
+    userId: user._id,
     type: "deposit",
     amount,
     balance: user.balance,
   });
-  res.send("Deposit accepted");
+  res.json({balance:user.balance});
 });
 
 router.post("/withdraw/:id", async (req, res) => {
@@ -61,18 +67,19 @@ router.post("/withdraw/:id", async (req, res) => {
   }
 
   if (user.balance < amount) {
-    return res.send("Insufficent funds");
+    return res.status(400).json({ message: "Insufficient funds" });
   }
 
   user.balance -= amount;
   await user.save();
 
   await Transaction.create({
+    userId: user._id,
     type: "withdraw",
     amount,
     balance: user.balance,
   });
-  res.send("Withdrawal accepted!");
+  res.json({balance:user.balance});
 });
 
 export default router;
