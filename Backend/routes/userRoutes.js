@@ -58,10 +58,9 @@ router.get("/balance/:id", async (req, res) => {
 router.post("/deposit/:id", async (req, res) => {
   const amount = Number(req.body.amount);
   const user = await User.findById(req.params.id);
-  if (!user) {
-    return res.status(404).send("User does not exist");
+  if (!amount || amount <= 0) {
+    return res.status(400).send("Deposit amount must be greater than 0");
   }
-
   user.balance += amount;
 
   await user.save();
@@ -78,10 +77,9 @@ router.post("/deposit/:id", async (req, res) => {
 router.post("/withdraw/:id", async (req, res) => {
   const amount = Number(req.body.amount);
   const user = await User.findById(req.params.id);
-  if (!user) {
-    return res.status(404).send("User does not exist");
+  if (!amount || amount <= 0) {
+    return res.status(400).send("Withdrawal amount must be greater than 0");
   }
-
   if (user.balance < amount) {
     return res.status(400).json({ message: "Insufficient funds" });
   }
