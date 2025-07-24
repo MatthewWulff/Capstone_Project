@@ -5,18 +5,18 @@ import { useNavigate } from "react-router-dom"
 
 export default function Transactions(){
     const navigate =useNavigate()
-    const {id} = useParams()
+    const {id} = useParams() //gets user id from url
     const[transactions, setTransactions] = useState([])
 
     const backToDashboard = () => {
-        navigate(-1)
+        navigate(-1) // button to go back -1 pages
     }
  
 
 
 useEffect(()=>{
     const getTransactions = async () => {
-        const res = await api.get(`/transactions/${id}`)
+        const res = await api.get(`/transactions/${id}`) //gets full history under id number
         setTransactions(res.data)
     }
     getTransactions()

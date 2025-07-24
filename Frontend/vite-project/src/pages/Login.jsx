@@ -15,6 +15,8 @@ const formChange = (e)=>{
     setForm({...form, [e.target.name]: e.target.value})
 }
 
+
+//form that either registers or login user
 const userSubmit = async (e) => {
     e.preventDefault()
   try{

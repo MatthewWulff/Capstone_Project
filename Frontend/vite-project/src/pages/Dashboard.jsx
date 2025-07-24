@@ -3,13 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
 
 export default function Dashboard() {
-  const { id } = useParams();
+  const { id } = useParams(); // get id for url 
   const navigate = useNavigate();
   const [balance, setBalance] = useState(0);
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
   const[newPin, setNewPin] = useState('')
 
+
+  //calls backend to fetch user balance and updates state to show new balance
   useEffect(() => {
     const fetchBalance = async () => {
       const res = await api.get(`balance/${id}`);
@@ -21,6 +23,7 @@ export default function Dashboard() {
     await api.put(`/update/${id}`, {pin:newPin})
     alert("Updated")
   }
+  //deposit amount to balance
   const deposit = async () => {
     if (!amount) {
       return;
@@ -30,6 +33,8 @@ export default function Dashboard() {
     setAmount("");
   };
 
+
+  //withdraw amount entered and updates balance 
   const withdraw = async () => {
     if (!amount) return;
     try {
@@ -42,6 +47,7 @@ export default function Dashboard() {
       setMessage(err.response?.data?.message || "Withdrawal failed");
     }
   };
+  //deletes account
   const deleteAccount = async ()=>{
     const res = await api.delete(`/delete/${id}`)
     setMessage(res.data.message)
