@@ -1,6 +1,6 @@
 Basic Bank Transaction APP using MERN Stack
 
-This is a Bank APP that asks for Login and oonce authenticated brings you to a dashboard where you can make transactions such as deposit and withdrawal. 
+This is a Bank APP that asks for Login and once authenticated brings you to a dashboard where you can make transactions such as deposit and withdrawal. 
 
 There are the CRUD requirements Create user, Read transactions, Update pin, Delete user
 
