@@ -8,4 +8,8 @@ there are 3 pages to navigate to login dashboard and view transactions
 
 I styled the app in simple css. Left some to be desired.
 
-I have a User and Transaction model 
+I have a User and Transaction model schema
+
+Userroutes with all CRUD for Backend 
+
+Axios used for api calls
