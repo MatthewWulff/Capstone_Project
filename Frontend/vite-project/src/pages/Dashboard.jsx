@@ -46,7 +46,7 @@ export default function Dashboard() {
 
 
   return (
-    <>
+    <div className="container">
       <h2>Dashboard</h2>
       <h3>
         <h3>Balance: ${balance}</h3>
@@ -67,6 +67,6 @@ export default function Dashboard() {
       </button>
       <div></div>
       <button onClick={deleteAccount }>Delete Account</button>
-    </>
+    </div>
   );
 }

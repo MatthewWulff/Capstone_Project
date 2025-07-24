@@ -31,9 +31,9 @@ router.post('/login',async (req,res)=>{
 })
 
 router.post("/create", async (req, res) => {
-  const { firstName, lastName, pin, phone } = req.body;
+  const { firstName, lastName, pin, } = req.body;
 
-  const newUser = new User({ firstName, lastName, pin, phone });
+  const newUser = new User({ firstName, lastName, pin,});
   await newUser.save();
 
   res.json({message: 'Account created', userId: newUser._id});
