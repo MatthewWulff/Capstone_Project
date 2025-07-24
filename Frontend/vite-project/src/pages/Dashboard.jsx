@@ -8,6 +8,7 @@ export default function Dashboard() {
   const [balance, setBalance] = useState(0);
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
+  const[newPin, setNewPin] = useState('')
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -16,7 +17,10 @@ export default function Dashboard() {
     };
     fetchBalance();
   }, [id]);
-
+  const updatePin = async () => {
+    await api.put(`/update/${id}`, {pin:newPin})
+    alert("Updated")
+  }
   const deposit = async () => {
     if (!amount) {
       return;
@@ -48,10 +52,10 @@ export default function Dashboard() {
   return (
     <div className="container">
       <h2>Dashboard</h2>
-      <h3>
+      
         <h3>Balance: ${balance}</h3>
         {message && <p>{message}</p>}
-      </h3>
+      
       <input
         type="number"
         placeholder="Amount"
@@ -67,6 +71,12 @@ export default function Dashboard() {
       </button>
       <div></div>
       <button onClick={deleteAccount }>Delete Account</button>
+      <div></div>
+      <input
+      placeholder="New Pin"
+      value = {newPin}
+      onChange={(e) => setNewPin(e.target.value)}/>
+      <button onClick={updatePin}>Update PIN</button>
     </div>
   );
 }

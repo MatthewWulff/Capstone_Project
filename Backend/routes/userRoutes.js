@@ -4,7 +4,13 @@ import Transaction from "../models/Transaction.js";
 
 const router = express.Router();
 
-
+router.put("/update/:id", async (req,res)=> {
+    const updateUserPin = await User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+    if(!updateUserPin){
+        return res.status(404).send("User not found")
+    }
+    res.send("User pin updated")
+})
 router.delete("/delete/:id" , async (req,res)=> {
     const user = await User.findByIdAndDelete(req.params.id)
     if(!user){
