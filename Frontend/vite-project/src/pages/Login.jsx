@@ -6,7 +6,7 @@ import api from "../api";
 
 export default function Login(){
 const[isUser, setIsUser] = useState(false)
-const[form, setForm] = useState({firstName:'', lastName: '', pin: '', phone:""})
+const[form, setForm] = useState({firstName:'', lastName: '', pin: ''})
 const[message, setMessage] = useState('')
 
 const navigate = useNavigate()
